@@ -21,6 +21,3 @@ export default tseslint.config([
     },
   },
 ])
-
-
-Book-Club-Library-Management-Web-Application

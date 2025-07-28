@@ -3,9 +3,10 @@ import { createReader,getAllReaders,editReader,deleteReader } from "../controlle
 
 const readerRouter = Router()
 
-readerRouter.post("/create", createReader)
+readerRouter.post("/", createReader)
 readerRouter.get("/getReaders",getAllReaders)
 readerRouter.put("/:id",editReader)
 readerRouter.delete("/:id",deleteReader)
+
 
 export default readerRouter

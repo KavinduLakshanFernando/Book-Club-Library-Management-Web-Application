@@ -1,6 +1,5 @@
 import mongoose from "mongoose"
 
-
 type User = {
   name:string,
   email:string,
@@ -8,8 +7,6 @@ type User = {
   role: "admin" | "user"
   createAt :Date
 }
-
-
 
 const userSchema = new mongoose.Schema<User>({
   name: {

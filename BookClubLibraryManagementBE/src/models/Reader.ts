@@ -3,7 +3,6 @@ import mongoose from "mongoose"
 type Reader = {
     first_name: string
     last_name: string
-
     email: string
     age: number
     address: string
