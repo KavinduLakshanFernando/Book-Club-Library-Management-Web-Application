@@ -4,19 +4,22 @@ import AdminRoutes from "./pages/AdminRoutes.tsx";
 import DashBoard from "./pages/DashBoard.tsx";
 import ReaderPage from "./pages/ReaderPage.tsx";
 import BookPage from "./pages/BookPage.tsx";
-import LoginPage from "./pages/LoginPage.tsx";
+import LendingPage from "./pages/LendingPage.tsx";
+
+
 
 const router = createBrowserRouter([
     {path: "/", element: <Layout/>,
     children: [
-        { path: "/", element: <LoginPage /> },
-        { path: "/login", element: <LoginPage /> },
+        { path: "/", element: <div>Home</div> },
+        // { path: "/login", element: <Login /> },
         // { path: "/signup", element: <Signup /> },
         {element: <AdminRoutes/>,
         children: [
             {path: "/dashboard", element: <DashBoard/>},
             {path: "/dashboard/readers", element: <ReaderPage/>},
-            {path: "/dashboard/books", element: <BookPage/>}
+            {path: "/dashboard/books", element: <BookPage/>},
+            {path: "/dashboard/lendings", element: <LendingPage/>},
         ]
 
 

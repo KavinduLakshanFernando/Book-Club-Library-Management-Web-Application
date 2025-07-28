@@ -2,9 +2,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar.tsx";
 
 const AdminRoutes = () => {
-  const isLoggedIn = !!localStorage.getItem("token");
+  // const isLoggedIn = !!localStorage.getItem("token");
 
-  if (!isLoggedIn) return <Navigate to="/login" />;
+  // if (!isLoggedIn) return <Navigate to="/login" />;
 
   return (
     <div className="flex h-screen overflow-hidden">

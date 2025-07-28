@@ -34,6 +34,10 @@ const Sidebar = () => {
             id: "books",
             label: "Books",
         },
+        {
+            id: "lendings",
+            label: "Lendings",
+        },
     ]
 
     return (
