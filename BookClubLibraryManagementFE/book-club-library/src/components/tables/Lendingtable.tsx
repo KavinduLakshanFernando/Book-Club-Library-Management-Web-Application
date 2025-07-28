@@ -1,6 +1,7 @@
 import React from "react";
 import type { Lending } from "../../types/Lending";
 
+
 type Props = {
   records: Lending[];
 };

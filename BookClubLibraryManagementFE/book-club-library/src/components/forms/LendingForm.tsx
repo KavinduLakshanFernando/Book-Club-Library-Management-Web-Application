@@ -1,12 +1,15 @@
 import { useState, type FormEvent } from "react";
 import type { Lending } from "../../types/Lending";
-
+import type { Reader } from "../../types/Reader";
+import type { Book } from "../../types/Book";
 
 type Props = {
   onSubmit: (data: Lending) => void;
+  books: Book[];
+  readers: Reader[];
 };
 
-const LendingForm: React.FC<Props> = ({ onSubmit }) => {
+const LendingForm: React.FC<Props> = ({ onSubmit, books, readers }) => {
   const [formData, setFormData] = useState<Lending>({
     bookId: "",
     readerId: "",
@@ -37,25 +40,39 @@ const LendingForm: React.FC<Props> = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md space-y-4">
       <div>
-        <label className="block">Book ID</label>
-        <input
+        <label className="block">Select Book</label>
+        <select
           name="bookId"
           value={formData.bookId}
           onChange={handleChange}
           className="w-full border p-2 rounded"
           required
-        />
+        >
+          <option value="">-- Select Book --</option>
+          {books.map((book) => (
+            <option key={book._id} value={book._id}>
+              {book.title}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div>
-        <label className="block">Reader ID</label>
-        <input
+        <label className="block">Select Reader</label>
+        <select
           name="readerId"
           value={formData.readerId}
           onChange={handleChange}
           className="w-full border p-2 rounded"
           required
-        />
+        >
+          <option value="">-- Select Reader --</option>
+          {readers.map((reader) => (
+            <option key={reader._id} value={reader._id}>
+                {reader.first_name} {reader.last_name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div>
@@ -82,7 +99,7 @@ const LendingForm: React.FC<Props> = ({ onSubmit }) => {
       </div>
 
       <div>
-        <label className="block">Return Date (optional)</label>
+        <label className="block">Return Date</label>
         <input
           name="returnDate"
           type="date"

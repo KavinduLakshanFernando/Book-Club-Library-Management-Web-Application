@@ -7,3 +7,5 @@ export interface Lending {
   returnDate?: string | null;
   status: "borrowed" | "returned" | "late";
 }
+
+

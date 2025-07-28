@@ -8,6 +8,7 @@ export const getAllBooks = async (): Promise<Book[]> => {
   return response.data;
 };
 
+
 export const addBook = async (book: Omit<Book, "_id">): Promise<Book> => {
   const response = await apiClient.post(`${Book_URL}/add`, book);
   return response.data;
