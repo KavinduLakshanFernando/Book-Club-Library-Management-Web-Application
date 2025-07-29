@@ -96,7 +96,7 @@ const Sidebar = () => {
 
                 {/* User Profile Section */}
                 {!isCollapsed && (
-                    <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-indigo-800">
+                    <div  className="mt-28 px-4 py-3 border-t border-indigo-3000">
                         <div className="flex items-center space-x-3">
                             <div className="w-10 h-10 bg-indigo-700 rounded-full flex items-center justify-center">
                                 <User className="w-6 h-6 text-indigo-200" />

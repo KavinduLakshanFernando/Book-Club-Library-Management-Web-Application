@@ -9,7 +9,9 @@ export const getAllReaders = async (): Promise<Reader[]> => {
 };
 
 export const addReader = async (reader: Omit<Reader, "_id">): Promise<Reader> => {
-  const response = await apiClient.post(Reader_URL, reader);
+  const response = await apiClient.post(Reader_URL, 
+    
+  );
   return response.data;
 };
 

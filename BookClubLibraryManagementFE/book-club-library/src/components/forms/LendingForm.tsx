@@ -10,7 +10,8 @@ type Props = {
 };
 
 const LendingForm: React.FC<Props> = ({ onSubmit, books, readers }) => {
-  const [formData, setFormData] = useState<Lending>({
+  const [formData, setFormData] = useState<Lending> ({
+    bookName: "",
     bookId: "",
     readerId: "",
     lendDate: "",
@@ -28,6 +29,7 @@ const LendingForm: React.FC<Props> = ({ onSubmit, books, readers }) => {
     e.preventDefault();
     onSubmit(formData);
     setFormData({
+      bookName: "",
       bookId: "",
       readerId: "",
       lendDate: "",
@@ -48,7 +50,7 @@ const LendingForm: React.FC<Props> = ({ onSubmit, books, readers }) => {
           className="w-full border p-2 rounded"
           required
         >
-          <option value="">-- Select Book --</option>
+          <option value="">Select Book</option>
           {books.map((book) => (
             <option key={book._id} value={book._id}>
               {book.title}
@@ -66,10 +68,10 @@ const LendingForm: React.FC<Props> = ({ onSubmit, books, readers }) => {
           className="w-full border p-2 rounded"
           required
         >
-          <option value="">-- Select Reader --</option>
+          <option value="">Select Reader</option>
           {readers.map((reader) => (
             <option key={reader._id} value={reader._id}>
-                {reader.first_name} {reader.last_name}
+              {reader.first_name} {reader.last_name}
             </option>
           ))}
         </select>
@@ -83,6 +85,7 @@ const LendingForm: React.FC<Props> = ({ onSubmit, books, readers }) => {
           value={formData.lendDate}
           onChange={handleChange}
           className="w-full border p-2 rounded"
+          required
         />
       </div>
 
