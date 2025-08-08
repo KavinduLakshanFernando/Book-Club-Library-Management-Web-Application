@@ -9,7 +9,7 @@ import { ReaderModel } from "../models/Reader";
 export const landbook = (req:Request, res:Response, next:NextFunction) => {
 
     try {
-        const { bookId, readerId, lendDate, dueDate, returnDate, status } = req.body;
+        const { bookId, readerId, lendDate, dueDate, returnDate, status , email } = req.body;
         const book = BookModel.findById(bookId);
         if (!book) {
             return next(new APIError(404, "Book not found"));
@@ -18,7 +18,7 @@ export const landbook = (req:Request, res:Response, next:NextFunction) => {
         if (!reader) {
             return next(new APIError(404, "Reader not found"));
         }
-        const lending = new LendingModel({ bookId, readerId, lendDate, dueDate, returnDate, status });
+        const lending = new LendingModel({ bookId, readerId, lendDate, dueDate, returnDate, status , email });
         lending.save();
         res.status(201).json(lending);
     }catch (err) {
@@ -101,3 +101,33 @@ export const deleteRecord = async (req: Request, res: Response, next: NextFuncti
         next(err)
     }
 }
+
+export const getAllOverdueRecords = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const today = new Date();
+        const overdueRecords = await LendingModel.find({
+            dueDate: { $lt: today },
+            status: "borrowed"
+        });
+        res.status(200).json(overdueRecords);
+    } catch (err) {
+        next(err);
+    }
+}
+
+export const markAsReturn = async (req: Request, res: Response, next: NextFunction) => {
+   try {
+       const { id } = req.params;
+       const lending = await LendingModel.findById(id);
+       if (!lending) {
+           return next(new APIError(404, "Lending record not found"));
+       }
+       lending.status = "returned";
+       await lending.save();
+       res.status(200).json(lending);
+   } catch (err) {
+       next(err);
+   }
+}
+
+

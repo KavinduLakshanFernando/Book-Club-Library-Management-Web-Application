@@ -11,31 +11,43 @@ type Props = {
 
 const LendingForm: React.FC<Props> = ({ onSubmit, books, readers }) => {
   const [formData, setFormData] = useState<Lending> ({
-    bookName: "",
     bookId: "",
     readerId: "",
     lendDate: "",
     dueDate: "",
     returnDate: "",
     status: "borrowed",
+    email: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const { name, value } = e.target;
+
+  if (name === "readerId") {
+    // Find selected reader
+    const selectedReader = readers.find((reader) => reader._id === value);
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+      email: selectedReader ? selectedReader.email : "",
+    }));
+  } else {
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  }
+};
+
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
     setFormData({
-      bookName: "",
       bookId: "",
       readerId: "",
       lendDate: "",
       dueDate: "",
       returnDate: "",
       status: "borrowed",
+      email: "",
     });
   };
 
