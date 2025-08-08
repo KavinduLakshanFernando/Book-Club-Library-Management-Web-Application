@@ -38,6 +38,10 @@ const Sidebar = () => {
             id: "lendings",
             label: "Lendings",
         },
+        {
+            id: "overdue",
+            label: "Overdue",
+        }
     ]
 
     return (
